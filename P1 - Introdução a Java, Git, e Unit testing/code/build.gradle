@@ -1,0 +1,39 @@
+plugins {
+    id 'groovy'
+    id 'info.solidsoft.pitest' version '1.7.0'
+//    id "net.ltgt.errorprone" version "2.0.2"
+}
+
+group 'ldts.g0907'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spock
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+    testImplementation 'org.codehaus.groovy:groovy-all:3.0.8'
+    // Lanterna
+    implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'
+//    errorprone("com.google.errorprone:error_prone_core:2.10.0")
+    //Mockito
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.mockito:mockito-core:4.2.0'
+
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+pitest {
+    junit5PluginVersion = '0.15'
+    threads = 4
+    outputFormats = ['HTML']
+    timestampedReports = false
+}
